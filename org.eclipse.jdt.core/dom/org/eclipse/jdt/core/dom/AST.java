@@ -926,6 +926,7 @@ public final class AST {
 	 * like CharacterLiteral, NumberLiteral, StringLiteral or SimpleName.
 	 */
 	Scanner scanner;
+	String sourceCode;
 
 	/**
 	 * new Object[] {this}
@@ -1176,6 +1177,7 @@ public final class AST {
 			null/*taskPriorities*/,
 			true/*taskCaseSensitive*/,
 			this.previewEnabled /* isPreviewEnabled*/);
+		this.sourceCode = new String(this.scanner.source);
 	}
 
 	private static Map<String, Long> getLevelMapTable() {
@@ -3767,5 +3769,14 @@ public final class AST {
 				return true;
 		}
 		return false;
+	}
+
+	/**
+	 *
+	 * @return source code
+	 * @since 3.26.0-SNAPSHOT
+	 */
+	public String getSourceCode() {
+		return new String(this.scanner.source);
 	}
 }
